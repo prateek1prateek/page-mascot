@@ -12,22 +12,18 @@ alpha. Set the option on the call.
 for transparency you cannot receive is exactly what produces the checkerboard, and that
 is unrecoverable. Use *Drawing without transparency* at the bottom instead.
 
-## Doing it by hand
+## Native Codex workflow
 
-With no image tool and no API key, paste these into any chat UI that draws images. One
-fresh chat per character, exactly two messages: DIRECTIONS, then EXPRESSIONS with the first
-result attached. Check the first result before going on: if the character sits on a
-grey-and-white checkerboard, that UI cannot produce alpha and no rewording will change it.
-Start again with *Drawing without transparency* below, which works in a chat UI that can
-only return opaque images. Retrying inside a chat that already holds several attempts makes the model
-average over them and the two sheets stop matching; if one needs redoing, start a new chat
-and redo both. Saying up front that a second matching sheet is coming measurably helps.
+Use Codex's built-in image tool with `transparent_background: true`. Generate DIRECTIONS,
+inspect it, then pass it as the reference for EXPRESSIONS. Use the tool's current reference
+arguments and returned output paths. No API key or model setting is needed. If native
+image generation is unavailable, use existing characters or user-provided sheets.
 
 Save the results as `characters/<name>/directions.png` and `characters/<name>/reactions.png`
 in the project, then from the project root:
 
 ```bash
-python3 <skill-dir>/scripts/mascot.py <name> --skip-generate
+python3 <skill-dir>/scripts/mascot.py <name>
 ```
 
 It builds, checks, and either says the character is ready or names the sheet at fault.

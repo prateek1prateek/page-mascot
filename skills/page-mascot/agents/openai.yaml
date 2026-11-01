@@ -1,0 +1,4 @@
+interface:
+  display_name: "Page Mascot"
+  short_description: "Add a cursor-tracking mascot with native Codex tools"
+  default_prompt: "Use $page-mascot to add a cursor-tracking mascot that fits this page."

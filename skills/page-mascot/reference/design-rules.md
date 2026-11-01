@@ -1,6 +1,6 @@
 # Why the rules are shaped this way
 
-Everything here was learned by building fifty of these and measuring what broke. Read it
+These are upstream observations from building the original character set, not current model guarantees. The Codex fork uses the native image tool without pinning a model. Read it
 when a character fails in a way the script's messages do not cover.
 
 ## The body must be one drawing
@@ -109,7 +109,7 @@ pixel. Shift alone scores that as perfect.
 
 `verify.py` also reports a palette match: a histogram intersection over the character's
 own pixels, across both sheets. Verified characters land between 49% and 86%. A
-mismatched pair measured 12%. The build refuses anything under 40%.
+mismatched pair measured 12%. The current build gate refuses anything under 22%; the older 40% gate rejected some legitimate robot palettes.
 
 The percentage is lower than intuition suggests even for good pairs, because expressions
 legitimately change which colours are visible — an open mouth adds pink, closed eyes
@@ -176,7 +176,7 @@ Four things make the difference between that working and a ruined sheet:
   is less green there than in the fur itself.
 
 This is a fallback, not an improvement. Where a transparent-background option exists it is
-one parameter and no failure modes, and it is what `generate.py` asks for first.
+one explicit tool setting. In Codex, set `transparent_background: true` and inspect the returned alpha before building.
 
 ## Ask for appeal, do not forbid it
 

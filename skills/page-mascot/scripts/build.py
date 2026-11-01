@@ -244,8 +244,7 @@ reaction_mask = silhouette(reaction_frames)
 H, Wm = direction_mask.shape
 
 
-def overlap(scale, dy):
-    zoomed = ndimage.zoom(reaction_mask, scale, order=1)
+def overlap(zoomed, dy):
     canvas = np.zeros_like(direction_mask)
     oy = round((H - zoomed.shape[0]) / 2 + dy)
     ox = round((Wm - zoomed.shape[1]) / 2)
@@ -259,9 +258,12 @@ def overlap(scale, dy):
     return float(np.minimum(canvas, direction_mask).sum() / max(union, 1e-6))
 
 
-best = max(((overlap(sc / 1000, dy), sc / 1000, dy)
-            for sc in range(1000 - int(MATCH_CLAMP * 1000), 1000 + int(MATCH_CLAMP * 1000) + 1, 5)
-            for dy in range(-40, 41)))
+# Each scale has 81 offsets. Resize once per scale, preserving every candidate and
+# the original tuple tie-breaking order, without retaining all resized masks.
+best = (-1.0, 0.0, 0)
+for sc in range(1000 - int(MATCH_CLAMP * 1000), 1000 + int(MATCH_CLAMP * 1000) + 1, 5):
+    zoomed = ndimage.zoom(reaction_mask, sc / 1000, order=1)
+    best = max(best, max((overlap(zoomed, dy), sc / 1000, dy) for dy in range(-40, 41)))
 score, correction, shift_quarter = best
 shift = shift_quarter * 4
 print(f'  cross-sheet fit  scale {correction:.3f}  shift {shift:+d}px  overlap {score*100:.1f}%')

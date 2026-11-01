@@ -1,7 +1,7 @@
 import { Mascot } from '../src/mascot'
 import { MASCOTS, sheets } from './mascots'
 
-const REPO = 'https://github.com/nilbuild/page-mascot'
+const REPO = 'https://github.com/prateek1prateek/page-mascot'
 
 function GitHubMark() {
   return (
@@ -24,7 +24,7 @@ export function Hero(props: HeroProps) {
       <Mascot key={character} {...sheets(character)} label={character} size={200} className="-ml-4" />
 
       <h1 className="mt-2 font-mono text-5xl font-bold tracking-tighter sm:text-6xl">
-        /page-mascot
+        $page-mascot
       </h1>
       <p className="mt-4 max-w-[42ch] text-xl leading-snug font-medium text-ink/60">
         Skill to generate a character for the top of your page. It follows the reader&rsquo;s cursor and

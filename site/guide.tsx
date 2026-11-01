@@ -110,7 +110,7 @@ const MAKE_STEPS: Step[] = [
     title: 'Install the skill',
     body: (
       <>
-        <Snippet>npx skills add nilbuild/page-mascot --skill page-mascot --global --yes</Snippet>
+        <Snippet>Use $skill-installer to install https://github.com/prateek1prateek/page-mascot/tree/main/skills/page-mascot</Snippet>
       </>
     ),
   },
@@ -118,11 +118,11 @@ const MAKE_STEPS: Step[] = [
     title: 'Ask for a character',
     body: (
       <>
-        <Snippet lang="prompt">/page-mascot a chibi otter with chocolate-brown fur</Snippet>
+        <Snippet lang="prompt">$page-mascot a chibi otter with chocolate-brown fur</Snippet>
         <p className="mt-4 text-ink/55">Attach a photo and it draws you instead.</p>
-        <Snippet lang="prompt">/page-mascot make one that looks like me</Snippet>
+        <Snippet lang="prompt">$page-mascot make one that looks like me</Snippet>
         <p className="mt-4 text-ink/55">Name a style and it draws in that one.</p>
-        <Snippet lang="prompt">/page-mascot a chibi fox, in the riso style</Snippet>
+        <Snippet lang="prompt">$page-mascot a chibi fox, in the riso style</Snippet>
       </>
     ),
   },
@@ -147,8 +147,8 @@ const MAKE_STEPS: Step[] = [
   reactions="/mascots/otter-reactions.webp"
 />`}</Snippet>
         <p className="mt-3 text-sm text-ink/40">
-          Drawing needs an image tool. Codex has one. Claude Code goes through the OpenAI
-          images API, so set <span className="font-mono">OPENAI_API_KEY</span> first.
+          Custom drawing uses Codex’s native image tool. No API key is needed. Existing
+          characters work without image generation.
         </p>
       </>
     ),
